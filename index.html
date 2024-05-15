@@ -6,30 +6,42 @@
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/variables.css" />
     <link rel="stylesheet" href="./css/style.css" />
-    <title>Pharmacy manager OOP</title>
+    <title>OOP pharmacy alfa</title>
   </head>
   <body>
     <div class="main-container">
       <form class="add-new-product-form">
         <h2>Register product</h2>
         <label for="product-name">Product name:</label>
-        <input type="text" name="product-name" class="product-name" />
+        <input type="text" name="product-name" class="product-name" required/>
 
         <label for="product-type">Type:</label>
-        <select name="product-type" class="product-type">
+        <select name="product-type" class="product-type"required>
+		<option value="*">Please choose</option>
           <option value="tablets">Tablets</option>
           <option value="liquids">Liquids</option>
           <option value="creams">Creams</option>
         </select>
 
+		<div class="extra-info-container">
+		<label for="tablets-dose-mg"></label>
+        <input type="text" name="tablets-dose-mg" class="tablets-dose-mg" placeholder="Dosage in Mg:" disabled/>
+
+		<label for="liquid-dose-ml"></label>
+        <input type="text" name="liquid-dose-ml" class="liquid-dose-ml" placeholder="Dosage in Ml:" disabled/>
+
+		<label for="creams-usage-per-day"></label>
+        <input type="text" name="creams-usage-per-day" class="creams-usage-per-day" placeholder="Use times a day:" disabled/>
+		</div>
+
         <label for="manufacturer">Manufacturer:</label>
-        <input type="text" name="manufacturer" class="manufacturer" />
+        <input type="text" name="manufacturer" class="manufacturer" required/>
 
         <label for="expiration-date">Expires:</label>
-        <input type="date" name="expiration-date" class="expiration-date" />
+        <input type="date" name="expiration-date" class="expiration-date" required/>
 
         <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" class="quantity" />
+        <input type="number" name="quantity" class="quantity" required/>
 
         <button type="submit" class="submit-button">Add new product</button>
       </form>
