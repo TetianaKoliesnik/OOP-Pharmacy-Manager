@@ -29,6 +29,13 @@
 	  border-radius: 0.25rem;
   }
   
+  
+  /* Need to make it more obvious when enabled/disabled */
+  .extra-info-container input {
+	  margin-bottom: var(--spacing-small);
+  }
+  
+  
   .submit-button{
 	  height: var(--spacing-medium);
 	  cursor: pointer;
