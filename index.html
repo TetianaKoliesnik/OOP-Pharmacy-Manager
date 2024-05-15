@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/variables.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Pharmacy manager OOP</title>
+  </head>
+  <body>
+    <div class="main-container">
+      <form class="add-new-product-form">
+        <h2>Register product</h2>
+        <label for="product-name">Product name:</label>
+        <input type="text" name="product-name" class="product-name" />
+
+        <label for="product-type">Type:</label>
+        <select name="product-type" class="product-type">
+          <option value="tablets">Tablets</option>
+          <option value="liquids">Liquids</option>
+          <option value="creams">Creams</option>
+        </select>
+
+        <label for="manufacturer">Manufacturer:</label>
+        <input type="text" name="manufacturer" class="manufacturer" />
+
+        <label for="expiration-date">Expires:</label>
+        <input type="date" name="expiration-date" class="expiration-date" />
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" class="quantity" />
+
+        <button type="submit" class="submit-button">Add new product</button>
+      </form>
+
+      <section class="display-product-section">
+        <div class="filter-buttons-container">
+          <button class="render-tablets-button">Tablets</button>
+          <button class="render-liquids-button">Liquids</button>
+          <button class="render-creams-button">Creams</button>
+          <button class="render-all-button">All</button>
+
+        </div>
+
+        <div class="display-products-container">
+
+			<div class="display-all-products">
+				<header class="all-products-header">
+					<span>Product name</span>
+					<span>Product type</span>
+					<span>Manufacturer</span>
+					<span>Expiration date</span>
+					<span>Quantity</span>
+					<span>Delete</span>
+				</header>
+				<ul class="all-products-list">
+	
+				</ul>
+          <div class="display-tablets">
+			<header class="tablets-header">
+				<span>Product name</span>
+				<span>Product type</span>
+				<span>Manufacturer</span>
+				<span>Expiration date</span>
+				<span>Quantity</span>
+				<span>Delete</span>
+			</header>
+			<ul class="tablets-list">
+
+			</ul>
+
+		  </div>
+
+		  <div class="display-liquids">
+			<header class="liquids-header">
+				<span>Product name</span>
+				<span>Product type</span>
+				<span>Manufacturer</span>
+				<span>Expiration date</span>
+				<span>Quantity</span>
+				<span>Delete</span>
+			</header>
+			<ul class="liquids-list">
+
+			</ul>
+			
+		  </div>
+		  <div class="display-creams">
+			<header class="creams-header">
+				<span>Product name</span>
+				<span>Product type</span>
+				<span>Manufacturer</span>
+				<span>Expiration date</span>
+				<span>Quantity</span>
+				<span>Delete</span>
+			</header>
+			<ul class="creams-list">
+
+			</ul>
+			
+		  </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>

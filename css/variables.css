@@ -1,0 +1,16 @@
+:root {
+	--font-size-base: 1rem;
+	--font-size-small: 0,5rem;
+	--font-size-medium: 2rem;
+	--font-size-large: 4rem;
+
+	--spacing-small: 1rem;
+	--spacing-medium: 2rem;
+	--spacing-large: 4rem;
+
+	--color-primary: #22577A;
+	--color-secondary: #38A3A5;
+	--color-tetriary: #57CC99;
+	--color-quaternary: #80ED99;
+	--color-quinary: #C7F9CC;
+}
