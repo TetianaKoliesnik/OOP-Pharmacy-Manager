@@ -90,4 +90,23 @@
   .display-tablets, .display-liquids, .display-creams{
 	  display: none;
   }
-  
+
+  .display-all-row, .display-tablets-row, .display-liquids-row, .display-creams-row{
+	display: flex;
+	height: var(--spacing-small);
+	margin-bottom: 0.5rem;
+	background-color: var(--color-quinary)
+  }
+
+  .display-all-row span{
+	flex-basis: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+  .delete-button{
+	padding: 0.5rem 0.5rem;
+	border-radius: 0.25rem;
+	cursor: pointer;
+	background-color: var(--color-quinary);
+  }
