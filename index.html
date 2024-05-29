@@ -13,35 +13,61 @@
       <form class="add-new-product-form">
         <h2>Register product</h2>
         <label for="product-name">Product name:</label>
-        <input type="text" name="product-name" class="product-name" required/>
+        <input type="text" name="product-name" class="product-name" required />
 
         <label for="product-type">Type:</label>
-        <select name="product-type" class="product-type"required>
-		<option value="*">Please choose</option>
+        <select name="product-type" class="product-type" required>
+          <option value="*">Please choose</option>
           <option value="tablets">Tablets</option>
           <option value="liquids">Liquids</option>
           <option value="creams">Creams</option>
         </select>
 
-		<div class="extra-info-container">
-		<label for="tablets-dose-mg"></label>
-        <input type="text" name="tablets-dose-mg" class="tablets-dose-mg" placeholder="Dosage in Mg:" disabled required/>
+        <div class="extra-info-container">
+          <label for="tablets-dose-mg"></label>
+          <input
+            type="text"
+            name="tablets-dose-mg"
+            class="tablets-dose-mg"
+            placeholder="Dosage in Mg:"
+            disabled
+            required
+          />
 
-		<label for="liquid-dose-ml"></label>
-        <input type="text" name="liquid-dose-ml" class="liquid-dose-ml" placeholder="Dosage in Ml:" disabled required/>
+          <label for="liquid-dose-ml"></label>
+          <input
+            type="text"
+            name="liquid-dose-ml"
+            class="liquid-dose-ml"
+            placeholder="Dosage in Ml:"
+            disabled
+            required
+          />
 
-		<label for="creams-usage-per-day"></label>
-        <input type="text" name="creams-usage-per-day" class="creams-usage-per-day" placeholder="Use times a day:" disabled required/>
-		</div>
+          <label for="creams-usage-per-day"></label>
+          <input
+            type="text"
+            name="creams-usage-per-day"
+            class="creams-usage-per-day"
+            placeholder="Use times a day:"
+            disabled
+            required
+          />
+        </div>
 
         <label for="manufacturer">Manufacturer:</label>
-        <input type="text" name="manufacturer" class="manufacturer" required/>
+        <input type="text" name="manufacturer" class="manufacturer" required />
 
         <label for="expiration-date">Expires:</label>
-        <input type="date" name="expiration-date" class="expiration-date" required/>
+        <input
+          type="date"
+          name="expiration-date"
+          class="expiration-date"
+          required
+        />
 
         <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" class="quantity" required/>
+        <input type="number" name="quantity" class="quantity" required />
 
         <button type="submit" class="submit-button">Add new product</button>
       </form>
@@ -52,70 +78,59 @@
           <button class="render-liquids-button">Liquids</button>
           <button class="render-creams-button">Creams</button>
           <button class="render-all-button">All</button>
-
         </div>
 
         <div class="display-products-container">
-
-			<div class="display-all-products">
-				<header class="all-products-header">
-					<span>Product name</span>
-					<span>Product type</span>
-					<span>Manufacturer</span>
-					<span>Expiration date</span>
-					<span>Quantity</span>
-					<span>Delete</span>
-				</header>
-				<ul class="all-products-list"> <!-- empty ul because I will create li elements when rendering created elements -->
-	
-				</ul>
-			</div>
+          <div class="display-all-products">
+            <header class="all-products-header">
+              <span>Product name</span>
+              <span>Product type</span>
+              <span>Manufacturer</span>
+              <span>Expiration date</span>
+              <span>Quantity</span>
+              <span>Delete</span>
+            </header>
+            <ul class="all-products-list">
+              <!-- empty ul because I will create li elements when rendering created elements -->
+            </ul>
+          </div>
           <div class="display-tablets">
-			<header class="tablets-header">
-				<span>Product name</span>
-				<span>Product type</span>
-				<span>Dosage</span>
-				<span>Manufacturer</span>
-				<span>Expiration date</span>
-				<span>Quantity</span>
-				<span>Delete</span>
-			</header>
-			<ul class="tablets-list">
+            <header class="tablets-header">
+              <span>Product name</span>
+              <span>Product type</span>
+              <span>Dosage</span>
+              <span>Manufacturer</span>
+              <span>Expiration date</span>
+              <span>Quantity</span>
+              <span>Delete</span>
+            </header>
+            <ul class="tablets-list"></ul>
+          </div>
 
-			</ul>
-
-		  </div>
-
-		  <div class="display-liquids">
-			<header class="liquids-header">
-				<span>Product name</span>
-				<span>Product type</span>
-				<span>Dosage</span>
-				<span>Manufacturer</span>
-				<span>Expiration date</span>
-				<span>Quantity</span>
-				<span>Delete</span>
-			</header>
-			<ul class="liquids-list">
-
-			</ul>
-			
-		  </div>
-		  <div class="display-creams">
-			<header class="creams-header">
-				<span>Product name</span>
-				<span>Product type</span>
-				<span>Dosage</span>
-				<span>Manufacturer</span>
-				<span>Expiration date</span>
-				<span>Quantity</span>
-				<span>Delete</span>
-			</header>
-			<ul class="creams-list">
-
-			</ul>
-			
-		  </div>
+          <div class="display-liquids">
+            <header class="liquids-header">
+              <span>Product name</span>
+              <span>Product type</span>
+              <span>Dosage</span>
+              <span>Manufacturer</span>
+              <span>Expiration date</span>
+              <span>Quantity</span>
+              <span>Delete</span>
+            </header>
+            <ul class="liquids-list"></ul>
+          </div>
+          <div class="display-creams">
+            <header class="creams-header">
+              <span>Product name</span>
+              <span>Product type</span>
+              <span>Dosage</span>
+              <span>Manufacturer</span>
+              <span>Expiration date</span>
+              <span>Quantity</span>
+              <span>Delete</span>
+            </header>
+            <ul class="creams-list"></ul>
+          </div>
         </div>
       </section>
     </div>

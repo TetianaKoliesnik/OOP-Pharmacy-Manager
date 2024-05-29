@@ -111,6 +111,21 @@
 	justify-content: center;
 	align-items: center;
   }
+
+  .display-liquids-row span {
+	flex-basis: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+
+  .display-creams-row span {
+	flex-basis: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+  
   .delete-button{
 	padding: 0.5rem 0.5rem;
 	border-radius: 0.25rem;

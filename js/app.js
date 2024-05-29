@@ -83,8 +83,7 @@ addNewProductForm.addEventListener("submit", (e) => {
     );
   }
   Product.addProduct(newProduct);
-  
-  
+
   console.log(newProduct);
   console.log(tabletMeds);
   console.log(liquidMeds);
@@ -98,10 +97,19 @@ renderAllMedsButton.addEventListener("click", () => {
   UI.renderMeds(allMeds);
 });
 
-renderTabletMedsButton.addEventListener("click", ()=> {
+renderTabletMedsButton.addEventListener("click", () => {
   UI.activeTab = "tablets";
   UI.renderTabletMeds(tabletMeds);
-  console.log(tabletMedsUl);
+});
+
+renderLiquidMedsButton.addEventListener("click", () => {
+  UI.activeTab = "liquids";
+  UI.renderLiquidMeds(liquidMeds);
+});
+
+renderCreamMedsButton.addEventListener("click", () => {
+  UI.activeTab = "creams";
+  UI.renderCreamMeds(creamMeds);
 });
 
 //declaring classes
@@ -248,11 +256,104 @@ class UI {
         renderedQuantity.textContent = tabMed.quantity;
         deleteButton.textContent = "Delete ❌";
 
+        liRow.classList.add("display-tablets-row");
+        deleteButton.classList.add("delete-button");
+
         tabletMedsUl.append(liRow);
         liRow.append(
           renderedProductName,
           renderedProductType,
           renderedTabletsDosageOption,
+          renderedManufacturer,
+          renderedExpirationDate,
+          renderedQuantity,
+          deleteButtonContainer
+        );
+        deleteButtonContainer.append(deleteButton);
+      });
+    }
+  }
+
+  static renderLiquidMeds(liquidMeds) {
+    liquidMedsUl.textContent = "";
+    displayAllMedsContainer.style.display = "none";
+    displayTabletMedsContainer.style.display = "none";
+    displayLiquidMedsContainer.style.display = "block";
+    displayCreamMedsContainer.style.display = "none";
+
+    if (UI.activeTab === "liquids") {
+      liquidMeds.forEach((liqMed) => {
+        const liRow = document.createElement("li");
+        const renderedProductName = document.createElement("span");
+        const renderedProductType = document.createElement("span");
+        const renderedLiquidDosageOption = document.createElement("span");
+        const renderedManufacturer = document.createElement("span");
+        const renderedExpirationDate = document.createElement("span");
+        const renderedQuantity = document.createElement("span");
+        const deleteButtonContainer = document.createElement("span");
+        const deleteButton = document.createElement("button");
+
+        renderedProductName.textContent = liqMed.productName;
+        renderedProductType.textContent = liqMed.productType;
+        renderedLiquidDosageOption.textContent = liqMed.liquidDosageOption;
+        renderedManufacturer.textContent = liqMed.manufacturer;
+        renderedExpirationDate.textContent = liqMed.expirationDate;
+        renderedQuantity.textContent = liqMed.quantity;
+        deleteButton.textContent = "Delete ❌";
+
+        liRow.classList.add("display-liquids-row");
+        deleteButton.classList.add("delete-button");
+
+        liquidMedsUl.append(liRow);
+        liRow.append(
+          renderedProductName,
+          renderedProductType,
+          renderedLiquidDosageOption,
+          renderedManufacturer,
+          renderedExpirationDate,
+          renderedQuantity,
+          deleteButtonContainer
+        );
+        deleteButtonContainer.append(deleteButton);
+      });
+    }
+  }
+
+  static renderCreamMeds(CreamMeds) {
+    creamMedsUl.textContent = "";
+    displayAllMedsContainer.style.display = "none";
+    displayTabletMedsContainer.style.display = "none";
+    displayLiquidMedsContainer.style.display = "none";
+    displayCreamMedsContainer.style.display = "block";
+
+    if (UI.activeTab === "creams") {
+      creamMeds.forEach((creMed) => {
+        const liRow = document.createElement("li");
+        const renderedProductName = document.createElement("span");
+        const renderedProductType = document.createElement("span");
+        const renderedCreamUsageOption = document.createElement("span");
+        const renderedManufacturer = document.createElement("span");
+        const renderedExpirationDate = document.createElement("span");
+        const renderedQuantity = document.createElement("span");
+        const deleteButtonContainer = document.createElement("span");
+        const deleteButton = document.createElement("button");
+
+        renderedProductName.textContent = creMed.productName;
+        renderedProductType.textContent = creMed.productType;
+        renderedCreamUsageOption.textContent = creMed.creamUsageOption;
+        renderedManufacturer.textContent = creMed.manufacturer;
+        renderedExpirationDate.textContent = creMed.expirationDate;
+        renderedQuantity.textContent = creMed.quantity;
+        deleteButton.textContent = "Delete ❌";
+
+        liRow.classList.add("display-creams-row");
+        deleteButton.classList.add("delete-button");
+
+        creamMedsUl.append(liRow);
+        liRow.append(
+          renderedProductName,
+          renderedProductType,
+          renderedCreamUsageOption,
           renderedManufacturer,
           renderedExpirationDate,
           renderedQuantity,
