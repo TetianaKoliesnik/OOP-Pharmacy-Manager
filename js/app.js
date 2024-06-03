@@ -136,7 +136,24 @@ class Product {
       liquidMeds.push(meds), allMeds.push(meds);
     } else if (meds.productType === "creams") {
       creamMeds.push(meds), allMeds.push(meds);
-    } //maybe needs changing because i have productType === "*" in index.html too
+    }
+  }
+
+  static deleteProduct(id, productsArray) {
+    const index = productsArray.findIndex(
+      (product) => product.ID.toString() === id.toString()
+    );
+    if (index !== -1) {
+      //if the element is there, do the following:
+      productsArray.splice(index, 1);
+      if (UI.activeTab === "tablets") {
+        UI.renderMeds(allMeds), UI.renderTabletMeds(tabletMeds);
+      } else if (UI.activeTab === "liquids") {
+        UI.renderMeds(allMeds), UI.renderLiquidMeds(liquidMeds);
+      } else {
+        UI.renderMeds(allMeds), UI.renderCreamMeds(creamMeds);
+      }
+    }
   }
 }
 
@@ -212,6 +229,8 @@ class UI {
         renderedQuantity.textContent = med.quantity;
         deleteButton.textContent = "Delete ❌";
 
+        liRow.dataset.id = med.ID;
+
         liRow.classList.add("display-all-row");
         deleteButton.classList.add("delete-button");
 
@@ -225,6 +244,11 @@ class UI {
           deleteButtonContainer
         );
         deleteButtonContainer.append(deleteButton);
+
+        deleteButton.addEventListener("click", (e) => {
+          const rowID = e.currentTarget.parentElement.parentElement.dataset.id;
+          Product.deleteProduct(rowID, allMeds);
+        });
       });
     }
   }
@@ -256,6 +280,8 @@ class UI {
         renderedQuantity.textContent = tabMed.quantity;
         deleteButton.textContent = "Delete ❌";
 
+        liRow.dataset.id = tabMed.ID;
+
         liRow.classList.add("display-tablets-row");
         deleteButton.classList.add("delete-button");
 
@@ -270,6 +296,11 @@ class UI {
           deleteButtonContainer
         );
         deleteButtonContainer.append(deleteButton);
+
+        deleteButton.addEventListener("click", (e) => {
+          const rowID = e.currentTarget.parentElement.parentElement.dataset.id;
+          Product.deleteProduct(rowID, tabletMeds);
+        });
       });
     }
   }
@@ -301,6 +332,8 @@ class UI {
         renderedQuantity.textContent = liqMed.quantity;
         deleteButton.textContent = "Delete ❌";
 
+        liRow.dataset.id = liqMed.ID;
+
         liRow.classList.add("display-liquids-row");
         deleteButton.classList.add("delete-button");
 
@@ -315,6 +348,10 @@ class UI {
           deleteButtonContainer
         );
         deleteButtonContainer.append(deleteButton);
+        deleteButton.addEventListener("click", (e) => {
+          const rowID = e.currentTarget.parentElement.parentElement.dataset.id;
+          Product.deleteProduct(rowID, liquidMeds);
+        });
       });
     }
   }
@@ -346,6 +383,8 @@ class UI {
         renderedQuantity.textContent = creMed.quantity;
         deleteButton.textContent = "Delete ❌";
 
+        liRow.dataset.id = creMed.ID;
+
         liRow.classList.add("display-creams-row");
         deleteButton.classList.add("delete-button");
 
@@ -360,6 +399,11 @@ class UI {
           deleteButtonContainer
         );
         deleteButtonContainer.append(deleteButton);
+
+        deleteButton.addEventListener("click", (e) => {
+          const rowID = e.currentTarget.parentElement.parentElement.dataset.id;
+          Product.deleteProduct(rowID, creamMeds);
+        });
       });
     }
   }
