@@ -1,3 +1,4 @@
+
 //create empty arrays so the newly created objects can be stored there
 const allMeds = [];
 const tabletMeds = [];
@@ -84,6 +85,34 @@ addNewProductForm.addEventListener("submit", (e) => {
   }
   Product.addProduct(newProduct);
 
+
+// adding data to the local storage using existing arrays
+  localStorage.setItem("allMeds", JSON.stringify(allMeds));
+  localStorage.setItem("tabletMeds", JSON.stringify(tabletMeds));
+  localStorage.setItem("liquidMeds", JSON.stringify(liquidMeds));
+  localStorage.setItem("creamMeds", JSON.stringify(creamMeds));
+
+// LOCAL STORAGE as an key-value pair
+ /*  const productInfo = {
+    storedProductName: newProduct.productName,
+    storedProductType: newProduct.productType,
+    storedTabletsDosageOption: newProduct.tabletsDosageOption,
+    storedLiquidDosageOption: newProduct.liquidDosageOption,
+    storedCreamUsageOption: newProduct.creamUsageOption,
+    storedManufacturer: newProduct.manufacturer,
+    storedExpirationDate: newProduct.expirationDate,
+    storedQuantity: newProduct.quantity
+  }
+  localStorage.setItem("productInfo", JSON.stringify(productInfo)); */ 
+
+  // LOCAL STORAGE as an array of objects
+/* let storedProducts = JSON.parse(localStorage.getItem("products"));
+if (!storedProducts) {
+  storedProducts = [];
+}
+storedProducts.push(newProduct);
+localStorage.setItem("products", JSON.stringify(storedProducts)); */
+  
   console.log(newProduct);
   console.log(tabletMeds);
   console.log(liquidMeds);
@@ -143,9 +172,11 @@ class Product {
     const index = productsArray.findIndex(
       (product) => product.ID.toString() === id.toString()
     );
-    if (index !== -1) {
-      //if the element is there, do the following:
+    if (index !== -1) { //if the element is there, do the following:
       productsArray.splice(index, 1);
+
+      localStorage.setItem("products", JSON.stringify(productsArray)); //updating the local storage when deleting an item
+
       if (UI.activeTab === "tablets") {
         UI.renderMeds(allMeds), UI.renderTabletMeds(tabletMeds);
       } else if (UI.activeTab === "liquids") {
@@ -155,6 +186,8 @@ class Product {
       }
     }
   }
+
+
 }
 
 class Tablets extends Product {
@@ -406,5 +439,64 @@ class UI {
         });
       });
     }
+  }
+}
+
+
+//rerenering the data from the local storage when the page is refreshed
+
+window.onload = () => {
+  const storedAllMeds = JSON.parse(localStorage.getItem("allMeds"));
+  const storedTabletMeds = JSON.parse(localStorage.getItem("tabletMeds"));
+  const storedLiquidMeds = JSON.parse(localStorage.getItem("liquidMeds"));
+  const storedCreamMeds = JSON.parse(localStorage.getItem("creamMeds"));
+
+  if (storedAllMeds) {
+    storedAllMeds.forEach((med) => {
+      const newProduct = new Product(
+        med.productName,
+        med.productType,
+        med.manufacturer,
+        med.expirationDate,
+        med.quantity
+      );
+      allMeds.push(newProduct);
+    });
+  } else if (storedTabletMeds) {
+    storedTabletMeds.forEach((med) => {
+      const newProduct = new Tablets(
+        med.productName,
+        med.productType,
+        med.tabletsDosageOption,
+        med.manufacturer,
+        med.expirationDate,
+        med.quantity
+      );
+      tabletMeds.push(newProduct);
+    });
+  } else if (storedLiquidMeds) {
+    storedLiquidMeds.forEach((med) => {
+      const newProduct = new Liquids(
+        med.productName,
+        med.productType,
+        med.liquidDosageOption,
+        med.manufacturer,
+        med.expirationDate,
+        med.quantity
+      );
+      liquidMeds.push(newProduct);
+    });
+  } else {
+    storedCreamMeds.forEach((med) => {
+      const newProduct = new Creams(
+        med.productName,
+        med.productType,
+        med.creamUsageOption,
+        med.manufacturer,
+        med.expirationDate,
+        med.quantity
+      );
+      creamMeds.push(newProduct);
+    });
   }
 }
