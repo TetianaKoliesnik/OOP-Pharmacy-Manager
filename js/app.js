@@ -146,11 +146,12 @@ class Product {
     if (index !== -1) {
       //if the element is there, do the following:
       productsArray.splice(index, 1);
+
       if (UI.activeTab === "tablets") {
         UI.renderMeds(allMeds), UI.renderTabletMeds(tabletMeds);
       } else if (UI.activeTab === "liquids") {
         UI.renderMeds(allMeds), UI.renderLiquidMeds(liquidMeds);
-      } else {
+      } else if (UI.activeTab === "creams"){
         UI.renderMeds(allMeds), UI.renderCreamMeds(creamMeds);
       }
     }
@@ -356,7 +357,7 @@ class UI {
     }
   }
 
-  static renderCreamMeds(CreamMeds) {
+  static renderCreamMeds(creamMeds) {
     creamMedsUl.textContent = "";
     displayAllMedsContainer.style.display = "none";
     displayTabletMedsContainer.style.display = "none";

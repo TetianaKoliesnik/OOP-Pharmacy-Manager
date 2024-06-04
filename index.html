@@ -10,13 +10,23 @@
   </head>
   <body>
     <div class="main-container">
+      ```html
       <form class="add-new-product-form">
         <h2>Register product</h2>
         <label for="product-name">Product name:</label>
-        <input type="text" name="product-name" class="product-name" required />
+        <input 
+        type="text" 
+        id="product-name"
+        name="product-name" 
+        class="product-name" 
+        required />
 
         <label for="product-type">Type:</label>
-        <select name="product-type" class="product-type" required>
+        <select 
+        name="product-type"
+        id="product-type"
+        class="product-type" 
+        required>
           <option value="*">Please choose</option>
           <option value="tablets">Tablets</option>
           <option value="liquids">Liquids</option>
@@ -27,6 +37,7 @@
           <label for="tablets-dose-mg"></label>
           <input
             type="text"
+            id="tablets-dose-mg"
             name="tablets-dose-mg"
             class="tablets-dose-mg"
             placeholder="Dosage in Mg:"
@@ -37,6 +48,7 @@
           <label for="liquid-dose-ml"></label>
           <input
             type="text"
+            id = "liquid-dose-ml"
             name="liquid-dose-ml"
             class="liquid-dose-ml"
             placeholder="Dosage in Ml:"
@@ -47,6 +59,7 @@
           <label for="creams-usage-per-day"></label>
           <input
             type="text"
+            id="creams-usage-per-day"
             name="creams-usage-per-day"
             class="creams-usage-per-day"
             placeholder="Use times a day:"
@@ -56,18 +69,29 @@
         </div>
 
         <label for="manufacturer">Manufacturer:</label>
-        <input type="text" name="manufacturer" class="manufacturer" required />
+        <input
+        type="text"
+        id="manufacturer"
+        name="manufacturer" 
+        class="manufacturer" 
+        required />
 
         <label for="expiration-date">Expires:</label>
         <input
           type="date"
+          id="expiration-date"
           name="expiration-date"
           class="expiration-date"
           required
         />
 
         <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" class="quantity" required />
+        <input 
+        type="number" 
+        id="quantity"
+        name="quantity" 
+        class="quantity" 
+        required />
 
         <button type="submit" class="submit-button">Add new product</button>
       </form>
