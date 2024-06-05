@@ -84,6 +84,12 @@ addNewProductForm.addEventListener("submit", (e) => {
   }
   Product.addProduct(newProduct);
 
+  // adding data to the local storage using existing arrays
+  localStorage.setItem("allMeds", JSON.stringify(allMeds));
+  localStorage.setItem("tabletMeds", JSON.stringify(tabletMeds));
+  localStorage.setItem("liquidMeds", JSON.stringify(liquidMeds));
+  localStorage.setItem("creamMeds", JSON.stringify(creamMeds));
+
   console.log(newProduct);
   console.log(tabletMeds);
   console.log(liquidMeds);
@@ -143,10 +149,29 @@ class Product {
     const index = productsArray.findIndex(
       (product) => product.ID.toString() === id.toString()
     );
-    if (index !== -1) {
-      //if the element is there, do the following:
+    if (index !== -1) { //if the element is there, do the following:
+      const productToDelete = productsArray[index]; 
       productsArray.splice(index, 1);
+      //mapping the product type to the array to shorten the code
+      const medArrays = {
+        tablets: tabletMeds,
+        liquids: liquidMeds,
+        creams: creamMeds,
+      };
 
+      const medArray = medArrays[productToDelete.productType];
+      if (medArray) {
+        const medIndex = medArray.findIndex(
+          (med) => med.ID.toString() === id.toString()
+        );
+        if (medIndex !== -1) medArray.splice(medIndex, 1);
+      }
+      //updating the local storage when deleting an item
+      localStorage.setItem("allMeds", JSON.stringify(productsArray));
+      localStorage.setItem("tabletMeds", JSON.stringify(tabletMeds));
+      localStorage.setItem("liquidMeds", JSON.stringify(liquidMeds));
+      localStorage.setItem("creamMeds", JSON.stringify(creamMeds));
+      //rerender the data after deleting the item
       if (UI.activeTab === "tablets") {
         UI.renderMeds(allMeds), UI.renderTabletMeds(tabletMeds);
       } else if (UI.activeTab === "liquids") {
@@ -409,3 +434,29 @@ class UI {
     }
   }
 }
+
+//rerendering the data from the local storage when the page is refreshed
+
+document.addEventListener("DOMContentLoaded", () => {
+  //convert the data from the local storage from string to the array
+  const storedAllMeds = JSON.parse(localStorage.getItem("allMeds"));
+  const storedTabletMeds = JSON.parse(localStorage.getItem("tabletMeds"));
+  const storedLiquidMeds = JSON.parse(localStorage.getItem("liquidMeds"));
+  const storedCreamMeds = JSON.parse(localStorage.getItem("creamMeds"));
+
+  //if the data is not empty, push it to the arrays
+  if (storedAllMeds !== null) {
+    allMeds.push(...storedAllMeds);
+  }
+  if (storedTabletMeds !== null) {
+    tabletMeds.push(...storedTabletMeds);
+  }
+  if (storedLiquidMeds !== null) {
+    liquidMeds.push(...storedLiquidMeds);
+  }
+  if (storedCreamMeds !== null) {
+    creamMeds.push(...storedCreamMeds);
+  }
+
+  /* UI.renderMeds(allMeds); */ //i think this is not needed
+});
