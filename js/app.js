@@ -62,6 +62,7 @@ addNewProductForm.addEventListener("submit", (e) => {
       manufacturer.value,
       expirationDate.value,
       quantity.value
+      
     );
   } else if (productType.value === "liquids") {
     newProduct = new Liquids(
@@ -81,6 +82,7 @@ addNewProductForm.addEventListener("submit", (e) => {
       expirationDate.value,
       quantity.value
     );
+
   }
   Product.addProduct(newProduct);
 
@@ -95,6 +97,7 @@ addNewProductForm.addEventListener("submit", (e) => {
   console.log(liquidMeds);
   console.log(creamMeds);
   console.log(allMeds);
+  addNewProductForm.reset();
 });
 
 //adding event listeners
