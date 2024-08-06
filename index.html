@@ -9,33 +9,39 @@
     <title>OOP Pharmacy Manager</title>
   </head>
   <body>
-    <div class="main-container">
+    <main class="main-container">
       <form class="add-new-product-form">
         <h2>Register product</h2>
         <label for="product-name">Product name:</label>
-        <input 
-        type="text" 
-        id="product-name"
-        name="product-name" 
-        class="product-name" 
-        required />
+        <input
+          type="text"
+          id="product-name"
+          name="product-name"
+          class="product-name"
+          required
+        />
 
         <label for="product-type">Type:</label>
-        <select 
-        name="product-type"
-        id="product-type"
-        class="product-type" 
-        required>
-          <option value="*">Please choose</option>
+        <select
+          name="product-type"
+          id="product-type"
+          class="product-type"
+          required
+        >
+          <option value="">Please choose</option>
           <option value="tablets">Tablets</option>
           <option value="liquids">Liquids</option>
           <option value="creams">Creams</option>
         </select>
 
         <div class="extra-info-container">
-          <label for="tablets-dose-mg" class="visually-hidden-label">Tablets dosage in Mg:</label>
+          <label for="tablets-dose-mg" class="visually-hidden-label"
+            >Tablets dosage in Mg:</label
+          >
           <input
-            type="text"
+            type="number"
+            min="0.001"
+            step="any"
             id="tablets-dose-mg"
             name="tablets-dose-mg"
             class="tablets-dose-mg"
@@ -44,10 +50,14 @@
             required
           />
 
-          <label for="liquid-dose-ml" class="visually-hidden-label">Liquid dosage in Ml:</label>
+          <label for="liquid-dose-ml" class="visually-hidden-label"
+            >Liquid dosage in Ml:</label
+          >
           <input
-            type="text"
-            id = "liquid-dose-ml"
+            type="number"
+            min="0.001"
+            step="any"
+            id="liquid-dose-ml"
             name="liquid-dose-ml"
             class="liquid-dose-ml"
             placeholder="Dosage in Ml:"
@@ -55,9 +65,12 @@
             required
           />
 
-          <label for="creams-usage-per-day" class="visually-hidden-label" >Creams usage times a day:</label>
+          <label for="creams-usage-per-day" class="visually-hidden-label"
+            >Creams usage times a day:</label
+          >
           <input
-            type="text"
+            type="number"
+            min="1"
             id="creams-usage-per-day"
             name="creams-usage-per-day"
             class="creams-usage-per-day"
@@ -69,11 +82,12 @@
 
         <label for="manufacturer">Manufacturer:</label>
         <input
-        type="text"
-        id="manufacturer"
-        name="manufacturer" 
-        class="manufacturer" 
-        required />
+          type="text"
+          id="manufacturer"
+          name="manufacturer"
+          class="manufacturer"
+          required
+        />
 
         <label for="expiration-date">Expires:</label>
         <input
@@ -85,78 +99,44 @@
         />
 
         <label for="quantity">Quantity:</label>
-        <input 
-        type="number" 
-        id="quantity"
-        name="quantity" 
-        class="quantity" 
-        required />
+        <input
+          type="number"
+          min="1"
+          id="quantity"
+          name="quantity"
+          class="quantity"
+          required
+        />
 
         <button type="submit" class="submit-button">Add new product</button>
       </form>
 
       <section class="display-product-section">
         <div class="filter-buttons-container">
-          <button class="render-tablets-button">Tablets</button>
-          <button class="render-liquids-button">Liquids</button>
-          <button class="render-creams-button">Creams</button>
-          <button class="render-all-button">All</button>
+          <button class="render-button render-tablets-button">Tablets</button> 
+          <button class="render-button render-liquids-button">Liquids</button>
+          <button class="render-button render-creams-button">Creams</button>
+          <button class="render-button render-all-button button-active">All</button>
         </div>
 
-        <div class="display-products-container">
-          <div class="display-all-products">
-            <header class="all-products-header">
+        <div class="display-products-wrapper">
+          <div class="display-products-container">
+            <header class="products-header">
               <span>Product name</span>
               <span>Product type</span>
+              <span>Dosage</span>
               <span>Manufacturer</span>
               <span>Expiration date</span>
               <span>Quantity</span>
               <span>Delete</span>
             </header>
-            <ul class="all-products-list">
+            <ul class="products-list">
               <!-- empty ul because I will create li elements when rendering created elements -->
             </ul>
           </div>
-          <div class="display-tablets">
-            <header class="tablets-header">
-              <span>Product name</span>
-              <span>Product type</span>
-              <span>Dosage</span>
-              <span>Manufacturer</span>
-              <span>Expiration date</span>
-              <span>Quantity</span>
-              <span>Delete</span>
-            </header>
-            <ul class="tablets-list"></ul>
-          </div>
-
-          <div class="display-liquids">
-            <header class="liquids-header">
-              <span>Product name</span>
-              <span>Product type</span>
-              <span>Dosage</span>
-              <span>Manufacturer</span>
-              <span>Expiration date</span>
-              <span>Quantity</span>
-              <span>Delete</span>
-            </header>
-            <ul class="liquids-list"></ul>
-          </div>
-          <div class="display-creams">
-            <header class="creams-header">
-              <span>Product name</span>
-              <span>Product type</span>
-              <span>Dosage</span>
-              <span>Manufacturer</span>
-              <span>Expiration date</span>
-              <span>Quantity</span>
-              <span>Delete</span>
-            </header>
-            <ul class="creams-list"></ul>
-          </div>
         </div>
       </section>
-    </div>
+    </main>
 
     <script src="./js/app.js"></script>
   </body>
