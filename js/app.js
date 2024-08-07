@@ -27,6 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const medsList = displayAllMedsContainer.querySelector(".products-list");
   const allRenderButtons = document.querySelectorAll(".render-button"); //find all buttons with the class render-button and form a node list
 
+  //set exp day not in the past
+  const today = new Date().toISOString().split("T")[0];
+  expirationDate.setAttribute("min", today);
+
   //adding event listeners
   productType.addEventListener("change", () => {
     if (productType.value === "tablets") {
@@ -154,9 +158,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const index = allMeds.findIndex(
         (product) => product.ID.toString() === id.toString()
       );
-      if (index !== -1) { //if the element is there, do the following:
+      if (index !== -1) {
+        //if the element is there, do the following:
         const productToDelete = allMeds.splice(index, 1);
-        
+
         //mapping the product type to the array to shorten the code
         const medArrays = {
           tablets: tabletMeds,
@@ -177,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("liquidMeds", JSON.stringify(liquidMeds));
         localStorage.setItem("creamMeds", JSON.stringify(creamMeds));
         //rerender the data after deleting the item
-        this.updateScreen();    
+        this.updateScreen();
       }
     }
 
@@ -193,7 +198,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
- 
 
   class Tablets extends Product {
     constructor(
@@ -299,7 +303,6 @@ document.addEventListener("DOMContentLoaded", () => {
       deleteButton.addEventListener("click", (e) => {
         Product.deleteProduct(med.ID, med.productType);
       });
-
     }
   }
 

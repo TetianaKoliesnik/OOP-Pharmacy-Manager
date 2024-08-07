@@ -42,7 +42,6 @@
   border: 0;
 }
 
-/* Need to make it more obvious when enabled/disabled */
 .extra-info-container input {
   margin-bottom: var(--spacing-small);
 }
@@ -50,7 +49,7 @@
 .submit-button {
   height: var(--spacing-medium);
   cursor: pointer;
-  border: none;
+  padding: 0.5rem 1rem;
   border-radius: 0.25rem;
 }
 
