@@ -51,13 +51,16 @@ document.addEventListener("DOMContentLoaded", () => {
   addNewProductForm.addEventListener("submit", (e) => {
     e.preventDefault();
     let newProduct;
+
+    // convert date to ISO
+    const dateISO = new Date(expirationDate.value).toISOString().split("T")[0];
     if (productType.value === "tablets") {
       newProduct = new Tablets(
         productName.value,
         productType.value,
         tabletsDosageOption.value,
         manufacturer.value,
-        expirationDate.value,
+        dateISO,
         quantity.value
       );
     } else if (productType.value === "liquids") {
@@ -66,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         productType.value,
         liquidDosageOption.value,
         manufacturer.value,
-        expirationDate.value,
+        dateISO,
         quantity.value
       );
     } else if (productType.value === "creams") {
@@ -75,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
         productType.value,
         creamUsageOption.value,
         manufacturer.value,
-        expirationDate.value,
+        dateISO,
         quantity.value
       );
     }
@@ -87,11 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("liquidMeds", JSON.stringify(liquidMeds));
     localStorage.setItem("creamMeds", JSON.stringify(creamMeds));
 
-    console.log(newProduct);
-    console.log(tabletMeds);
-    console.log(liquidMeds);
-    console.log(creamMeds);
-    console.log(allMeds);
     addNewProductForm.reset();
   });
 
@@ -152,6 +150,37 @@ document.addEventListener("DOMContentLoaded", () => {
       this.updateScreen();
     }
 
+    static deleteProduct(id, type) {
+      const index = allMeds.findIndex(
+        (product) => product.ID.toString() === id.toString()
+      );
+      if (index !== -1) { //if the element is there, do the following:
+        const productToDelete = allMeds.splice(index, 1);
+        
+        //mapping the product type to the array to shorten the code
+        const medArrays = {
+          tablets: tabletMeds,
+          liquids: liquidMeds,
+          creams: creamMeds,
+        };
+
+        const medArray = medArrays[type];
+        if (medArray) {
+          const medIndex = medArray.findIndex(
+            (med) => med.ID.toString() === id.toString()
+          );
+          if (medIndex !== -1) medArray.splice(medIndex, 1);
+        }
+        //updating the local storage when deleting an item
+        localStorage.setItem("allMeds", JSON.stringify(allMeds));
+        localStorage.setItem("tabletMeds", JSON.stringify(tabletMeds));
+        localStorage.setItem("liquidMeds", JSON.stringify(liquidMeds));
+        localStorage.setItem("creamMeds", JSON.stringify(creamMeds));
+        //rerender the data after deleting the item
+        this.updateScreen();    
+      }
+    }
+
     static updateScreen() {
       if (UI.activeTab === "tablets") {
         UI.renderMeds(tabletMeds);
@@ -164,43 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
-  /*     static deleteProduct(id, productsArray) {
-      const index = productsArray.findIndex(
-        (product) => product.ID.toString() === id.toString()
-      );
-      if (index !== -1) {
-        //if the element is there, do the following:
-        const productToDelete = productsArray[index];
-        productsArray.splice(index, 1);
-        //mapping the product type to the array to shorten the code
-        const medArrays = {
-          tablets: tabletMeds,
-          liquids: liquidMeds,
-          creams: creamMeds,
-        };
-
-        const medArray = medArrays[productToDelete.productType];
-        if (medArray) {
-          const medIndex = medArray.findIndex(
-            (med) => med.ID.toString() === id.toString()
-          );
-          if (medIndex !== -1) medArray.splice(medIndex, 1);
-        }
-        //updating the local storage when deleting an item
-        localStorage.setItem("allMeds", JSON.stringify(productsArray));
-        localStorage.setItem("tabletMeds", JSON.stringify(tabletMeds));
-        localStorage.setItem("liquidMeds", JSON.stringify(liquidMeds));
-        localStorage.setItem("creamMeds", JSON.stringify(creamMeds));
-        //rerender the data after deleting the item
-        if (UI.activeTab === "tablets") {
-          UI.renderMeds(allMeds), UI.renderTabletMeds(tabletMeds);
-        } else if (UI.activeTab === "liquids") {
-          UI.renderMeds(allMeds), UI.renderLiquidMeds(liquidMeds);
-        } else if (UI.activeTab === "creams") {
-          UI.renderMeds(allMeds), UI.renderCreamMeds(creamMeds);
-        }
-      }
-    } */
+ 
 
   class Tablets extends Product {
     constructor(
@@ -249,12 +242,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //declaring UI class
   class UI {
-    static activeTab = "all";
+    static activeTab = "all"; // set the default active tab to all
 
     //render the data
     static renderMeds(medsArray) {
       medsList.textContent = ""; //prevent the data from being duplicated in html
-      medsArray.forEach((med) => { //loop through the array and create a list item for each element
+      medsArray.forEach((med) => {
+        //loop through the array and create a list item for each element
         this.createListItem(med);
       });
     }
@@ -302,13 +296,10 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       deleteButtonContainer.append(deleteButton);
 
-      
+      deleteButton.addEventListener("click", (e) => {
+        Product.deleteProduct(med.ID, med.productType);
+      });
 
-      /*           deleteButton.addEventListener("click", (e) => {
-            const rowID =
-              e.currentTarget.parentElement.parentElement.dataset.id;
-            Product.deleteProduct(rowID, allMeds);
-          }); */
     }
   }
 
