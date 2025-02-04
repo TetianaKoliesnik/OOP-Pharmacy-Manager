@@ -17,8 +17,6 @@ Color Palette by Coolors https://coolors.co/
 
 Deployed on Netlify: https://oop-pharmacy-manager.netlify.app
 
-GitHub: https://github.com/TetianaKoliesnik/OOP-Pharmacy-Manager
-
 ### Summary
 
 This one was relatively easy to make, progress was smooth, but project itself was the most time-consuming of all. 
